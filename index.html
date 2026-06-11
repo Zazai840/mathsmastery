@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MathsMastery — A-Level &amp; GCSE Maths and Physics Tutoring with Abdul</title>
+<meta name="description" content="Exam-focused A-Level and GCSE Maths &amp; Physics tutoring with Abdul — First Class Aerospace Engineering graduate and incoming Imperial College London Master's student. Book a free 15-minute consultation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0d1f3c;
+    --navy-2:#13294f;
+    --ink:#1c2533;
+    --cream:#f7f4ed;
+    --paper:#fffdf8;
+    --gold:#b98a2e;
+    --gold-light:#e3c47c;
+    --muted:#5b6473;
+    --line:rgba(13,31,60,.12);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{font-family:'Cormorant Garamond',Georgia,serif}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+
+  /* ---------- Navigation ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(247,244,237,.92);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+    transition:box-shadow .3s;
+  }
+  header.scrolled{box-shadow:0 2px 24px rgba(13,31,60,.08)}
+  .nav{
+    max-width:1140px;margin:0 auto;padding:0 24px;
+    display:flex;align-items:center;justify-content:space-between;height:72px;
+  }
+  .wordmark{
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.55rem;font-weight:700;color:var(--navy);
+    text-decoration:none;letter-spacing:.02em;
+  }
+  .wordmark span{color:var(--gold)}
+  .nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+  .nav-links a{
+    text-decoration:none;font-size:.92rem;font-weight:500;color:var(--ink);
+    transition:color .2s;
+  }
+  .nav-links a:hover{color:var(--gold)}
+  .btn{
+    display:inline-block;text-decoration:none;font-weight:600;font-size:.95rem;
+    padding:13px 28px;border-radius:6px;transition:all .25s;cursor:pointer;border:none;
+    font-family:'Inter',sans-serif;
+  }
+  .btn-gold{background:var(--gold);color:#fff}
+  .btn-gold:hover{background:#a87a22;transform:translateY(-1px);box-shadow:0 6px 18px rgba(185,138,46,.35)}
+  .btn-outline{border:1.5px solid rgba(255,255,255,.6);color:#fff;background:transparent}
+  .btn-outline:hover{background:rgba(255,255,255,.1);border-color:#fff}
+  .btn-navy{background:var(--navy);color:#fff}
+  .btn-navy:hover{background:var(--navy-2);transform:translateY(-1px);box-shadow:0 6px 18px rgba(13,31,60,.3)}
+  .nav .btn{padding:10px 22px;font-size:.88rem}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
+  .nav-toggle span{display:block;width:22px;height:2px;background:var(--navy);margin:5px 0;transition:.3s}
+
+  /* ---------- Section dots (slideshow feel) ---------- */
+  .dots{
+    position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:90;
+    display:flex;flex-direction:column;gap:14px;
+  }
+  .dots a{
+    width:9px;height:9px;border-radius:50%;
+    background:rgba(13,31,60,.25);transition:all .3s;display:block;
+  }
+  .dots a.active{background:var(--gold);transform:scale(1.45)}
+  .dots a:hover{background:var(--gold)}
+
+  /* ---------- Sections ---------- */
+  section{padding:110px 24px}
+  .container{max-width:1140px;margin:0 auto}
+  .kicker{
+    font-size:.78rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:14px;
+  }
+  .section-title{font-size:clamp(2rem,4vw,2.9rem);font-weight:600;color:var(--navy);line-height:1.15;margin-bottom:18px}
+  .section-sub{font-size:1.08rem;color:var(--muted);max-width:640px}
+
+  /* reveal animation */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.visible{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.12s}
+  .reveal.d2{transition-delay:.24s}
+  .reveal.d3{transition-delay:.36s}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none;transition:none}
+    .scroll-hint::after{animation:none}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    min-height:100vh;display:flex;align-items:center;
+    background:linear-gradient(160deg,var(--navy) 0%,var(--navy-2) 55%,#1a3a6b 100%);
+    color:#fff;padding-top:140px;position:relative;overflow:hidden;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(ellipse 60% 50% at 85% 20%,rgba(185,138,46,.14),transparent 60%),
+      radial-gradient(ellipse 50% 40% at 10% 90%,rgba(185,138,46,.08),transparent 60%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center;
+    position:relative;z-index:1;
+  }
+  .hero .kicker{color:#dcb968}
+  .hero h1{font-size:clamp(2.6rem,5.2vw,4rem);font-weight:600;line-height:1.08;margin-bottom:22px}
+  .hero h1 em{font-style:italic;color:#e3c47c}
+  .hero p.lede{font-size:1.13rem;color:rgba(255,255,255,.82);max-width:540px;margin-bottom:34px}
+  .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:52px}
+  .hero-stats{display:flex;gap:0;border-top:1px solid rgba(255,255,255,.18);padding-top:28px;max-width:560px}
+  .stat{flex:1;padding-right:28px}
+  .stat + .stat{border-left:1px solid rgba(255,255,255,.18);padding-left:28px}
+  .stat .num{font-family:'Cormorant Garamond',serif;font-size:2.1rem;font-weight:700;color:#e3c47c;line-height:1.1}
+  .stat .lbl{font-size:.8rem;color:rgba(255,255,255,.65);letter-spacing:.04em;margin-top:4px}
+  .hero-photo{position:relative}
+  .hero-photo .frame{
+    position:relative;border-radius:10px;overflow:hidden;
+    box-shadow:0 30px 70px rgba(0,0,0,.45);
+    aspect-ratio:4/5;
+  }
+  .hero-photo .frame::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(to top,rgba(13,31,60,.35) 0%,transparent 45%);
+  }
+  .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 62%}
+  .hero-photo .frame-border{
+    position:absolute;inset:-14px;border:1px solid rgba(227,196,124,.45);
+    border-radius:14px;pointer-events:none;
+  }
+  .hero-photo .caption{
+    position:absolute;bottom:18px;left:18px;right:18px;z-index:2;
+    color:#fff;font-size:.85rem;letter-spacing:.03em;
+    display:flex;align-items:center;gap:8px;
+  }
+  .hero-photo .caption::before{content:"";width:26px;height:1px;background:#e3c47c;display:inline-block}
+  .scroll-hint{
+    position:absolute;bottom:30px;left:50%;transform:translateX(-50%);
+    color:rgba(255,255,255,.55);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
+    display:flex;flex-direction:column;align-items:center;gap:8px;z-index:1;text-decoration:none;
+  }
+  .scroll-hint::after{
+    content:"";width:1px;height:34px;background:linear-gradient(to bottom,rgba(255,255,255,.55),transparent);
+    animation:drip 2s infinite;
+  }
+  @keyframes drip{0%{transform:scaleY(0);transform-origin:top}55%{transform:scaleY(1);transform-origin:top}100%{transform:scaleY(0);transform-origin:bottom}}
+
+  /* ---------- Credentials ---------- */
+  .creds{background:var(--paper)}
+  .creds-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:54px}
+  .cred-card{
+    background:var(--cream);border:1px solid var(--line);border-radius:10px;
+    padding:36px 30px;position:relative;transition:transform .3s,box-shadow .3s;
+  }
+  .cred-card:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(13,31,60,.1)}
+  .cred-card .badge{
+    width:46px;height:46px;border-radius:50%;background:var(--navy);color:#e3c47c;
+    display:flex;align-items:center;justify-content:center;margin-bottom:22px;
+  }
+  .cred-card h3{font-size:1.45rem;font-weight:600;color:var(--navy);margin-bottom:10px;line-height:1.25}
+  .cred-card p{font-size:.95rem;color:var(--muted)}
+  .cred-card .grade{
+    display:inline-block;margin-top:16px;font-weight:700;font-size:.82rem;
+    color:var(--gold);letter-spacing:.08em;text-transform:uppercase;
+    border-top:2px solid var(--gold);padding-top:8px;
+  }
+  .alevel-row{display:flex;gap:14px;margin-top:16px;flex-wrap:wrap}
+  .pill{
+    background:var(--navy);color:#fff;border-radius:6px;padding:8px 14px;
+    font-size:.85rem;font-weight:600;
+  }
+  .pill b{color:#e3c47c;margin-left:6px}
+
+  /* ---------- Subjects ---------- */
+  .subjects{background:var(--navy);color:#fff}
+  .subjects .section-title{color:#fff}
+  .subjects .section-sub{color:rgba(255,255,255,.7)}
+  .subjects .kicker{color:#dcb968}
+  .subj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;margin-top:54px}
+  .subj-card{
+    border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:38px 34px;
+    background:rgba(255,255,255,.04);transition:background .3s,border-color .3s;
+  }
+  .subj-card:hover{background:rgba(255,255,255,.08);border-color:rgba(227,196,124,.5)}
+  .subj-card .level{font-size:.76rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#dcb968;margin-bottom:10px}
+  .subj-card h3{font-size:1.7rem;font-weight:600;margin-bottom:12px}
+  .subj-card p{font-size:.95rem;color:rgba(255,255,255,.72)}
+  .subj-card .target{
+    margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.14);
+    font-size:.88rem;color:rgba(255,255,255,.85);display:flex;align-items:center;gap:10px;
+  }
+  .subj-card .target b{color:#e3c47c;font-size:1.05rem}
+
+  /* ---------- Approach ---------- */
+  .approach{background:var(--paper)}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:54px;counter-reset:step}
+  .step{
+    background:var(--cream);border:1px solid var(--line);border-radius:10px;padding:38px 30px;
+    position:relative;
+  }
+  .step::before{
+    counter-increment:step;content:"0" counter(step);
+    font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:700;
+    color:rgba(185,138,46,.28);position:absolute;top:18px;right:26px;line-height:1;
+  }
+  .step h3{font-size:1.4rem;font-weight:600;color:var(--navy);margin-bottom:12px;max-width:80%}
+  .step p{font-size:.94rem;color:var(--muted)}
+  .method{margin-top:80px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+  .method-photo{position:relative}
+  .method-photo .frame{border-radius:10px;overflow:hidden;box-shadow:0 24px 56px rgba(13,31,60,.18);aspect-ratio:1/1}
+  .method-photo img{width:100%;height:100%;object-fit:cover;object-position:center 70%}
+  .method-photo .frame-border{position:absolute;inset:14px;border:1px solid rgba(255,255,255,.55);border-radius:6px;pointer-events:none;z-index:2}
+  .method h3{font-size:1.9rem;font-weight:600;color:var(--navy);margin-bottom:18px}
+  .checklist{list-style:none;margin-top:8px}
+  .checklist li{
+    padding:13px 0 13px 38px;position:relative;border-bottom:1px solid var(--line);
+    font-size:.98rem;color:var(--ink);
+  }
+  .checklist li:last-child{border-bottom:none}
+  .checklist li::before{
+    content:"";position:absolute;left:0;top:18px;width:20px;height:20px;border-radius:50%;
+    background:var(--gold);
+    -webkit-mask:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>') center/14px no-repeat;
+    mask:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>') center/14px no-repeat;
+  }
+
+  /* ---------- Contact ---------- */
+  .contact{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-2) 70%);color:#fff;position:relative;overflow:hidden}
+  .contact::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(ellipse 55% 45% at 90% 10%,rgba(185,138,46,.12),transparent 60%);
+    pointer-events:none;
+  }
+  .contact .container{position:relative;z-index:1}
+  .contact .kicker{color:#dcb968}
+  .contact .section-title{color:#fff}
+  .contact .section-sub{color:rgba(255,255,255,.72)}
+  .contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;margin-top:54px;align-items:start}
+  .consult-card{
+    background:rgba(255,255,255,.06);border:1px solid rgba(227,196,124,.35);
+    border-radius:10px;padding:36px 32px;
+  }
+  .consult-card h3{font-size:1.6rem;font-weight:600;margin-bottom:12px}
+  .consult-card p{font-size:.95rem;color:rgba(255,255,255,.75);margin-bottom:18px}
+  .consult-points{list-style:none;margin-bottom:26px}
+  .consult-points li{
+    font-size:.92rem;color:rgba(255,255,255,.85);padding:8px 0 8px 26px;position:relative;
+  }
+  .consult-points li::before{content:"—";position:absolute;left:0;color:#e3c47c}
+  .direct-line{margin-top:26px;padding-top:22px;border-top:1px solid rgba(255,255,255,.15);font-size:.9rem;color:rgba(255,255,255,.7)}
+  .direct-line a{color:#e3c47c;text-decoration:none;font-weight:600}
+  .direct-line a:hover{text-decoration:underline}
+
+  form{
+    background:var(--paper);border-radius:10px;padding:42px 38px;color:var(--ink);
+    box-shadow:0 30px 70px rgba(0,0,0,.35);
+  }
+  form h3{font-size:1.5rem;font-weight:600;color:var(--navy);margin-bottom:6px}
+  form .form-sub{font-size:.9rem;color:var(--muted);margin-bottom:26px}
+  .field{margin-bottom:20px}
+  .field label{display:block;font-size:.82rem;font-weight:600;color:var(--navy);margin-bottom:7px;letter-spacing:.02em}
+  .field input,.field select,.field textarea{
+    width:100%;padding:13px 15px;border:1.5px solid var(--line);border-radius:6px;
+    font-family:'Inter',sans-serif;font-size:.95rem;color:var(--ink);background:#fff;
+    transition:border-color .2s,box-shadow .2s;
+  }
+  .field input:focus,.field select:focus,.field textarea:focus{
+    outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(185,138,46,.15);
+  }
+  .field textarea{resize:vertical;min-height:110px}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .consult-check{
+    display:flex;align-items:flex-start;gap:12px;background:var(--cream);
+    border:1.5px solid var(--line);border-radius:6px;padding:15px 16px;margin-bottom:24px;
+    cursor:pointer;transition:border-color .2s;
+  }
+  .consult-check:hover{border-color:var(--gold)}
+  .consult-check input{width:18px;height:18px;margin-top:2px;accent-color:var(--gold);flex-shrink:0}
+  .consult-check span{font-size:.9rem;color:var(--ink)}
+  .consult-check b{color:var(--navy)}
+  form .btn{width:100%;font-size:1rem;padding:16px}
+  .form-note{font-size:.78rem;color:var(--muted);text-align:center;margin-top:14px}
+
+  /* ---------- Footer ---------- */
+  footer{background:#0a1830;color:rgba(255,255,255,.6);padding:38px 24px;font-size:.85rem}
+  footer .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+  footer .wordmark{color:#fff;font-size:1.25rem}
+  footer a{color:rgba(255,255,255,.6);text-decoration:none}
+  footer a:hover{color:#e3c47c}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:960px){
+    .hero-grid{grid-template-columns:1fr;gap:48px}
+    .hero-photo{max-width:420px;margin:0 auto}
+    .creds-grid,.steps{grid-template-columns:1fr}
+    .subj-grid{grid-template-columns:1fr}
+    .method,.contact-grid{grid-template-columns:1fr;gap:44px}
+    .dots{display:none}
+    section{padding:80px 20px}
+  }
+  @media (max-width:760px){
+    .nav-links{
+      position:fixed;top:72px;left:0;right:0;background:var(--paper);
+      flex-direction:column;gap:0;padding:12px 0;border-bottom:1px solid var(--line);
+      display:none;box-shadow:0 16px 30px rgba(13,31,60,.12);
+    }
+    .nav-links.open{display:flex}
+    .nav-links li{width:100%;text-align:center}
+    .nav-links a{display:block;padding:14px}
+    .nav-links .btn{margin:10px 24px;display:block}
+    .nav-toggle{display:block}
+    .hero-stats{flex-direction:column;gap:18px}
+    .stat + .stat{border-left:none;padding-left:0;border-top:1px solid rgba(255,255,255,.18);padding-top:18px}
+    .field-row{grid-template-columns:1fr}
+    form{padding:30px 22px}
+    .scroll-hint{display:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header id="header">
+  <nav class="nav">
+    <a href="#top" class="wordmark">Maths<span>Mastery</span></a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#about">About Abdul</a></li>
+      <li><a href="#credentials">Credentials</a></li>
+      <li><a href="#subjects">Subjects</a></li>
+      <li><a href="#approach">How It Works</a></li>
+      <li><a href="#contact" class="btn btn-gold">Book a Free Consultation</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ============ SECTION DOTS ============ -->
+<nav class="dots" aria-label="Section navigation">
+  <a href="#about" data-dot="about" title="Meet Abdul"></a>
+  <a href="#credentials" data-dot="credentials" title="Credentials"></a>
+  <a href="#subjects" data-dot="subjects" title="Subjects"></a>
+  <a href="#approach" data-dot="approach" title="How it works"></a>
+  <a href="#contact" data-dot="contact" title="Get in touch"></a>
+</nav>
+
+<!-- ============ HERO / MEET ABDUL ============ -->
+<section class="hero" id="about">
+  <a id="top"></a>
+  <div class="container hero-grid">
+    <div>
+      <p class="kicker reveal">A-Level &amp; GCSE · Maths &amp; Physics · Online and in London</p>
+      <h1 class="reveal d1">Meet Abdul — your route to an <em>A*</em> in Maths &amp; Physics</h1>
+      <p class="lede reveal d2">
+        First Class Aerospace Engineering graduate and incoming Master's student at
+        Imperial College London. I prepare GCSE and A-Level students for one thing:
+        walking into the exam hall ready to score an A*/A or 9/8.
+      </p>
+      <div class="hero-ctas reveal d3">
+        <a href="#contact" class="btn btn-gold">Book a Free 15-Minute Call</a>
+        <a href="#credentials" class="btn btn-outline">See My Credentials</a>
+      </div>
+      <div class="hero-stats reveal d3">
+        <div class="stat"><div class="num">200+</div><div class="lbl">Hours of teaching</div></div>
+        <div class="stat"><div class="num">2 yrs</div><div class="lbl">Tutoring experience</div></div>
+        <div class="stat"><div class="num">1st</div><div class="lbl">Class Engineering degree</div></div>
+      </div>
+    </div>
+    <div class="hero-photo reveal d2">
+      <div class="frame">
+        <img src="assets/abdul.jpg" alt="Abdul — Maths and Physics tutor, photographed on the South Bank in London">
+        <p class="caption">Abdul · Incoming MSc, Imperial College London</p>
+      </div>
+      <div class="frame-border"></div>
+    </div>
+  </div>
+  <a href="#credentials" class="scroll-hint">Scroll</a>
+</section>
+
+<!-- ============ CREDENTIALS ============ -->
+<section class="creds" id="credentials">
+  <div class="container">
+    <p class="kicker reveal">Academic Record</p>
+    <h2 class="section-title reveal">Taught by someone who has<br>walked the path — at the top level</h2>
+    <p class="section-sub reveal d1">
+      Every method I teach is one I have used myself to earn top grades —
+      from A-Levels through to a First Class engineering degree and a place at Imperial.
+    </p>
+    <div class="creds-grid">
+      <div class="cred-card reveal">
+        <div class="badge">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <h3>MSc Applied Computational Science &amp; Engineering</h3>
+        <p>Incoming Master's student at Imperial College London — consistently ranked among the world's top universities for engineering and the sciences.</p>
+        <span class="grade">Imperial College London</span>
+      </div>
+      <div class="cred-card reveal d1">
+        <div class="badge">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13l1.5 8-5-3-5 3 1.5-8"/></svg>
+        </div>
+        <h3>BEng Aerospace Engineering</h3>
+        <p>Graduated with First Class Honours — a degree built on exactly the mathematics and physics your child is studying now, applied at the highest level.</p>
+        <span class="grade">First Class Honours</span>
+      </div>
+      <div class="cred-card reveal d2">
+        <div class="badge">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
+        <h3>A-Level Results</h3>
+        <p>Strong results across the exact subjects I now teach — I know these specifications, mark schemes and examiner habits from the inside.</p>
+        <div class="alevel-row">
+          <span class="pill">Physics<b>A*</b></span>
+          <span class="pill">Maths<b>A</b></span>
+          <span class="pill">Chemistry<b>A</b></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SUBJECTS ============ -->
+<section class="subjects" id="subjects">
+  <div class="container">
+    <p class="kicker reveal">What I Teach</p>
+    <h2 class="section-title reveal">Four subjects. One target:<br>top grades in the real exam.</h2>
+    <p class="section-sub reveal d1">
+      Lessons are built around the specification your child is actually sitting —
+      past papers, mark schemes and exam technique from day one.
+    </p>
+    <div class="subj-grid">
+      <div class="subj-card reveal">
+        <p class="level">A-Level</p>
+        <h3>Mathematics</h3>
+        <p>Pure, mechanics and statistics — taught for genuine understanding first, then drilled with past-paper questions until full marks feel routine.</p>
+        <p class="target">Target grade <b>A* / A</b></p>
+      </div>
+      <div class="subj-card reveal d1">
+        <p class="level">A-Level</p>
+        <h3>Physics</h3>
+        <p>From mechanics to fields and nuclear physics — I scored an A* in this exam myself and teach the intuition examiners reward.</p>
+        <p class="target">Target grade <b>A* / A</b></p>
+      </div>
+      <div class="subj-card reveal d1">
+        <p class="level">GCSE</p>
+        <h3>Mathematics</h3>
+        <p>Solid foundations, confidence with problem-solving, and structured exam practice — building the skills that make A-Level success possible.</p>
+        <p class="target">Target grade <b>9 / 8</b></p>
+      </div>
+      <div class="subj-card reveal d2">
+        <p class="level">GCSE</p>
+        <h3>Physics</h3>
+        <p>Clear explanations that replace memorisation with understanding, paired with the required practicals and equations mastered cold.</p>
+        <p class="target">Target grade <b>9 / 8</b></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APPROACH / HOW IT WORKS ============ -->
+<section class="approach" id="approach">
+  <div class="container">
+    <p class="kicker reveal">How It Works</p>
+    <h2 class="section-title reveal">A simple path from<br>first call to exam day</h2>
+    <div class="steps">
+      <div class="step reveal">
+        <h3>Free 15-minute consultation</h3>
+        <p>We talk about where your child is now, where they're struggling, and the grade they're aiming for. No commitment — just an honest assessment of how I can help.</p>
+      </div>
+      <div class="step reveal d1">
+        <h3>A personal study plan</h3>
+        <p>I map their syllabus against their weak areas and build a lesson plan targeted at the marks they're currently leaving on the table.</p>
+      </div>
+      <div class="step reveal d2">
+        <h3>Exam-focused lessons</h3>
+        <p>One-to-one lessons combining clear teaching, worked examples and timed past-paper practice — with regular progress updates for parents.</p>
+      </div>
+    </div>
+
+    <div class="method">
+      <div class="method-photo reveal">
+        <div class="frame">
+          <img src="assets/abdul.jpg" alt="Abdul in London, near Imperial College">
+        </div>
+        <div class="frame-border"></div>
+      </div>
+      <div class="reveal d1">
+        <p class="kicker">My Teaching Philosophy</p>
+        <h3>Exams are a skill. I teach it deliberately.</h3>
+        <ul class="checklist">
+          <li><b>Understanding before memorisation</b> — concepts explained until they genuinely click, not recited.</li>
+          <li><b>Past papers from day one</b> — every topic is practised the way it will actually be examined.</li>
+          <li><b>Mark-scheme thinking</b> — students learn to write answers the way examiners award marks.</li>
+          <li><b>Honest progress tracking</b> — parents always know where their child stands and what's next.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="container">
+    <p class="kicker reveal">Get Started</p>
+    <h2 class="section-title reveal">Tell me about your child.<br>I'll tell you how I can help.</h2>
+    <p class="section-sub reveal d1">
+      Send a message below and I'll reply within 24 hours — or tick the box to
+      arrange a free 15-minute consultation call.
+    </p>
+    <div class="contact-grid">
+      <div class="consult-card reveal">
+        <h3>The free 15-minute call</h3>
+        <p>Before any lessons are booked, we speak first. In fifteen minutes we will cover:</p>
+        <ul class="consult-points">
+          <li>Where your child currently stands — and the grade gap to close</li>
+          <li>The specific topics holding them back</li>
+          <li>How my lessons work, and whether I'm the right fit</li>
+          <li>A clear recommendation, even if it isn't tutoring with me</li>
+        </ul>
+        <a href="mailto:zazenquiries@gmail.com?subject=Free%2015-Minute%20Consultation%20—%20MathsMastery" class="btn btn-gold">Request a Call by Email</a>
+        <p class="direct-line">
+          Prefer email? Write to me directly at<br>
+          <a href="mailto:zazenquiries@gmail.com">zazenquiries@gmail.com</a>
+        </p>
+      </div>
+      <form class="reveal d1" action="https://formsubmit.co/zazenquiries@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New MathsMastery enquiry">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="#">
+        <h3>Send an enquiry</h3>
+        <p class="form-sub">All fields help me prepare for our first conversation.</p>
+        <div class="field-row">
+          <div class="field">
+            <label for="name">Your name</label>
+            <input type="text" id="name" name="Parent name" placeholder="e.g. Sarah Khan" required>
+          </div>
+          <div class="field">
+            <label for="email">Your email</label>
+            <input type="email" id="email" name="Email" placeholder="you@example.com" required>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="level">Level</label>
+            <select id="level" name="Level" required>
+              <option value="" disabled selected>Select level</option>
+              <option>A-Level</option>
+              <option>GCSE</option>
+              <option>Both / Not sure</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="subject">Subject</label>
+            <select id="subject" name="Subject" required>
+              <option value="" disabled selected>Select subject</option>
+              <option>Maths</option>
+              <option>Physics</option>
+              <option>Maths &amp; Physics</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="message">What is your child struggling with, and what kind of lessons are you looking for?</label>
+          <textarea id="message" name="Message" placeholder="e.g. My son is in Year 12 and losing marks on mechanics questions. We're looking for weekly online lessons before his summer exams." required></textarea>
+        </div>
+        <label class="consult-check">
+          <input type="checkbox" name="Consultation call requested" value="Yes — please arrange a free 15-minute call">
+          <span><b>Book my free 15-minute consultation call</b> — Abdul will email you to arrange a time that suits you.</span>
+        </label>
+        <button type="submit" class="btn btn-navy">Send Message to Abdul</button>
+        <p class="form-note">Your details are only used to respond to your enquiry. Replies within 24 hours.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <a href="#top" class="wordmark">Maths<span>Mastery</span></a>
+    <p>A-Level &amp; GCSE Maths and Physics tutoring · <a href="mailto:zazenquiries@gmail.com">zazenquiries@gmail.com</a></p>
+    <p>© 2026 MathsMastery · Abdul</p>
+  </div>
+</footer>
+
+<script>
+  // Header shadow on scroll
+  const header = document.getElementById('header');
+  addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 10), {passive:true});
+
+  // Reveal-on-scroll animations
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, {threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Active section dot
+  const dots = document.querySelectorAll('.dots a');
+  const sections = ['about','credentials','subjects','approach','contact'].map(id => document.getElementById(id));
+  const dotIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        dots.forEach(d => d.classList.toggle('active', d.dataset.dot === e.target.id));
+      }
+    });
+  }, {threshold:.4});
+  sections.forEach(s => dotIO.observe(s));
+
+  // Close mobile menu after navigating
+  document.querySelectorAll('.nav-links a').forEach(a =>
+    a.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open')));
+
+  // Form: redirect back to a thank-you state on this page
+  const form = document.querySelector('form');
+  const nextField = form.querySelector('input[name="_next"]');
+  nextField.value = location.origin === 'null' || location.protocol === 'file:'
+    ? '' : location.href.split('#')[0] + '#contact';
+  if (!nextField.value) nextField.remove();
+</script>
+</body>
+</html>
