@@ -246,6 +246,33 @@
     mask:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>') center/14px no-repeat;
   }
 
+  /* ---------- FAQ ---------- */
+  .faq{background:var(--paper)}
+  .faq-list{max-width:780px;margin-top:54px}
+  .faq-item{
+    border:1px solid var(--line);border-radius:10px;background:var(--cream);
+    margin-bottom:14px;overflow:hidden;transition:border-color .25s;
+  }
+  .faq-item[open]{border-color:rgba(185,138,46,.5)}
+  .faq-item summary{
+    list-style:none;cursor:pointer;display:flex;justify-content:space-between;
+    align-items:center;gap:18px;padding:22px 26px;
+    font-weight:600;color:var(--navy);font-size:1.02rem;transition:color .2s;
+  }
+  .faq-item summary::-webkit-details-marker{display:none}
+  .faq-item summary::after{
+    content:"+";font-family:'Cormorant Garamond',serif;font-size:1.9rem;
+    color:var(--gold);line-height:1;flex-shrink:0;transition:transform .3s;
+  }
+  .faq-item[open] summary::after{transform:rotate(45deg)}
+  .faq-item summary:hover{color:var(--gold)}
+  .faq-body{padding:0 26px 24px;font-size:.95rem;color:var(--muted)}
+  .faq-body b{color:var(--navy)}
+  .faq-body .price{
+    font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;
+    color:var(--gold);display:block;margin-bottom:6px;
+  }
+
   /* ---------- Contact ---------- */
   .contact{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-2) 70%);color:#fff;position:relative;overflow:hidden}
   .contact::before{
@@ -303,6 +330,19 @@
   form .btn{width:100%;font-size:1rem;padding:16px}
   .form-note{font-size:.78rem;color:var(--muted);text-align:center;margin-top:14px}
 
+  /* ---------- Thank-you screen ---------- */
+  .thanks-card{
+    background:var(--paper);border-radius:10px;padding:64px 40px;color:var(--ink);
+    box-shadow:0 30px 70px rgba(0,0,0,.35);text-align:center;
+  }
+  .thanks-card .tick{
+    width:64px;height:64px;border-radius:50%;background:var(--navy);color:#e3c47c;
+    display:flex;align-items:center;justify-content:center;margin:0 auto 26px;
+  }
+  .thanks-card h3{font-size:1.9rem;font-weight:600;color:var(--navy);margin-bottom:12px}
+  .thanks-card p{font-size:.98rem;color:var(--muted);max-width:400px;margin:0 auto}
+  .thanks-card p + p{margin-top:14px}
+
   /* ---------- Footer ---------- */
   footer{background:#0a1830;color:rgba(255,255,255,.6);padding:38px 24px;font-size:.85rem}
   footer .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
@@ -353,6 +393,7 @@
       <li><a href="#credentials">Credentials</a></li>
       <li><a href="#subjects">Subjects</a></li>
       <li><a href="#approach">How It Works</a></li>
+      <li><a href="#faq">FAQ</a></li>
       <li><a href="#contact" class="btn btn-gold">Book a Free Consultation</a></li>
     </ul>
   </nav>
@@ -364,6 +405,7 @@
   <a href="#credentials" data-dot="credentials" title="Credentials"></a>
   <a href="#subjects" data-dot="subjects" title="Subjects"></a>
   <a href="#approach" data-dot="approach" title="How it works"></a>
+  <a href="#faq" data-dot="faq" title="FAQ"></a>
   <a href="#contact" data-dot="contact" title="Get in touch"></a>
 </nav>
 
@@ -521,13 +563,79 @@
   </div>
 </section>
 
+<!-- ============ FAQ ============ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <p class="kicker reveal">Frequently Asked Questions</p>
+    <h2 class="section-title reveal">The questions parents<br>ask me most</h2>
+    <p class="section-sub reveal d1">
+      Everything you need to know before booking — and anything I've missed,
+      just ask on our free consultation call.
+    </p>
+    <div class="faq-list reveal d1">
+      <details class="faq-item">
+        <summary>How much do lessons cost?</summary>
+        <div class="faq-body">
+          <span class="price">£55 per hour</span>
+          One simple rate for all subjects and levels — GCSE or A-Level, Maths or Physics,
+          online or in person. That includes lesson preparation, a personal study plan,
+          curated practice materials and regular progress updates for parents. No sign-up
+          fees and no obligation to book a block of lessons.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Will I know how my child is getting on?</summary>
+        <div class="faq-body">
+          Yes — parent feedback is built into how I work. After lessons I share a short
+          update covering what we worked on, what's improving and what we're tackling next,
+          and you'll always get an honest picture of where your child stands against their
+          target grade. You're welcome to message me between lessons with any questions.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>How flexible are lesson times?</summary>
+        <div class="faq-body">
+          Very. I offer weekday evening and weekend slots, and we can set up a regular
+          weekly time or vary it around school commitments, mocks and holidays. Need to
+          move a lesson? Just give me 24 hours' notice and we'll reschedule at no charge.
+          In the run-up to exams, extra sessions can usually be arranged.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Are lessons online or in person?</summary>
+        <div class="faq-body">
+          Both. Most students choose online lessons on an interactive whiteboard — they're
+          just as effective and easier to schedule. In-person lessons are available in London,
+          subject to location and availability.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>How long is each lesson, and how often should we book?</summary>
+        <div class="faq-body">
+          Lessons are one hour. For most students, one lesson a week is the sweet spot —
+          enough to build momentum without overloading their schedule. Closer to exams,
+          many families step up to two sessions a week.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>How do we get started?</summary>
+        <div class="faq-body">
+          Send the enquiry form below and I'll get back to you within <b>one working day</b>
+          to arrange a free 15-minute consultation call. We'll talk about where your child is
+          now and the grade they're aiming for — then, if it's a good fit, we book a first lesson.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
 <!-- ============ CONTACT ============ -->
 <section class="contact" id="contact">
   <div class="container">
     <p class="kicker reveal">Get Started</p>
     <h2 class="section-title reveal">Tell me about your child.<br>I'll tell you how I can help.</h2>
     <p class="section-sub reveal d1">
-      Send a message below and I'll reply within 24 hours — or tick the box to
+      Send the form below and I'll reply within one working day — tick the box to
       arrange a free 15-minute consultation call.
     </p>
     <div class="contact-grid">
@@ -540,10 +648,9 @@
           <li>How my lessons work, and whether I'm the right fit</li>
           <li>A clear recommendation, even if it isn't tutoring with me</li>
         </ul>
-        <a href="mailto:zazenquiries@gmail.com?subject=Free%2015-Minute%20Consultation%20—%20MathsMastery" class="btn btn-gold">Request a Call by Email</a>
         <p class="direct-line">
-          Prefer email? Write to me directly at<br>
-          <a href="mailto:zazenquiries@gmail.com">zazenquiries@gmail.com</a>
+          To request a call, simply tick the consultation box in the form —
+          I'll email you within one working day to arrange a time.
         </p>
       </div>
       <form class="reveal d1" action="https://formsubmit.co/zazenquiries@gmail.com" method="POST">
@@ -591,8 +698,16 @@
           <span><b>Book my free 15-minute consultation call</b> — Abdul will email you to arrange a time that suits you.</span>
         </label>
         <button type="submit" class="btn btn-navy">Send Message to Abdul</button>
-        <p class="form-note">Your details are only used to respond to your enquiry. Replies within 24 hours.</p>
+        <p class="form-note">Your details are only used to respond to your enquiry. Replies within one working day.</p>
       </form>
+      <div class="thanks-card reveal d1" id="thanks" hidden>
+        <div class="tick">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3>Thank you — your enquiry is on its way</h3>
+        <p>Your message has been sent to Abdul. He'll get back to you within <b>one working day</b> to discuss how he can help — and to arrange your free 15-minute consultation call if you requested one.</p>
+        <p>Keep an eye on your inbox (and spam folder, just in case).</p>
+      </div>
     </div>
   </div>
 </section>
@@ -619,7 +734,7 @@
 
   // Active section dot
   const dots = document.querySelectorAll('.dots a');
-  const sections = ['about','credentials','subjects','approach','contact'].map(id => document.getElementById(id));
+  const sections = ['about','credentials','subjects','approach','faq','contact'].map(id => document.getElementById(id));
   const dotIO = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -633,12 +748,22 @@
   document.querySelectorAll('.nav-links a').forEach(a =>
     a.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open')));
 
-  // Form: redirect back to a thank-you state on this page
+  // Form: after submitting, FormSubmit redirects back here with ?submitted=1
+  // and the form is replaced by the thank-you screen.
   const form = document.querySelector('form');
   const nextField = form.querySelector('input[name="_next"]');
   nextField.value = location.origin === 'null' || location.protocol === 'file:'
-    ? '' : location.href.split('#')[0] + '#contact';
+    ? '' : location.href.split('#')[0].split('?')[0] + '?submitted=1#contact';
   if (!nextField.value) nextField.remove();
+
+  if (new URLSearchParams(location.search).has('submitted')) {
+    form.hidden = true;
+    const thanks = document.getElementById('thanks');
+    thanks.hidden = false;
+    thanks.classList.add('visible');
+    history.replaceState(null, '', location.pathname + '#contact');
+    document.getElementById('contact').scrollIntoView();
+  }
 </script>
 </body>
 </html>
